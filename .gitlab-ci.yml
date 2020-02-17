@@ -1,0 +1,154 @@
+stages:
+  - build
+  - push
+  - clean
+  - run
+
+variables:
+  DOCKER_REGISTRY: "192.168.1.162:5000"
+  DOCKER_NAMESPACE: "lmtdzjy/biz-center"
+
+# maven package
+.docker:build: &docker_build
+  stage: build
+  tags:
+    - maven
+  before_script:
+    - docker info
+  script:
+    - mvn clean package -U -DskipTests
+    - cd $APP_PATH/$APP_NAME
+    - mvn docker:build
+  only:
+    - dev
+  except:
+    - master
+
+# push
+.docker:push: &docker_push
+  stage: push
+  tags:
+    - docker
+    - deploy
+  script:
+    - docker login $DOCKER_REGISTRY -u admin --password admin123
+    - docker tag $DOCKER_REGISTRY/$APP_NAME $DOCKER_REGISTRY/$DOCKER_NAMESPACE/$APP_NAME
+    - docker push $DOCKER_REGISTRY/$DOCKER_NAMESPACE/$APP_NAME
+
+.docker:clean: &docker_clean
+  stage: clean
+  script:
+    - docker stop $CONTAIN_NAME
+    - docker rm $CONTAIN_NAME
+  allow_failure: true
+
+.docker:run: &docker_run
+  stage: run
+  before_script:
+    - docker pull $DOCKER_REGISTRY/$DOCKER_NAMESPACE/$APP_NAME
+  script:
+    - docker run -d --name=$CONTAIN_NAME -e $ENV -p $APP_PORT:$APP_PORT -e TZ="Asia/Shanghai" -v /etc/localtime:/etc/localtime --restart=always --network=pinpoint_pinpoint --volumes-from=pinpoint-agent $DOCKER_REGISTRY/$DOCKER_NAMESPACE/$APP_NAME
+
+##== admin ==##
+#### test ####
+.admin:var:test: &admin_var_test
+  variables:
+    APP_PATH: "lmt-mbsp-cms-admin"
+    APP_NAME: "cms-admin"
+    APP_PORT: 8089
+    CONTAIN_NAME: "cms-admin"
+    ENV: "SPRING_PROFILES_ACTIVE=test"
+  tags:
+    - clean-test
+    - run-test
+
+admin:build:
+  <<: *docker_build
+  <<: *admin_var_test
+
+admin:push:
+  <<: *docker_push
+  <<: *admin_var_test
+
+admin:clean:test:
+  <<: *docker_clean
+  <<: *admin_var_test
+
+admin:run:test:
+  <<: *docker_run
+  <<: *admin_var_test
+
+##== admin ==##
+#### dev ####
+.admin:var:dev: &admin_var_dev
+  variables:
+    APP_PATH: "lmt-mbsp-cms-admin"
+    APP_NAME: "cms-admin"
+    APP_PORT: 58089
+    CONTAIN_NAME: "cms-admin-dev"
+    ENV: "SPRING_PROFILES_ACTIVE=dev"
+  dependencies:
+    - admin:push
+  tags:
+    - clean-dev
+    - run-dev
+
+admin:clean:dev:
+  <<: *docker_clean
+  <<: *admin_var_dev
+
+admin:run:dev:
+  <<: *docker_run
+  <<: *admin_var_dev
+
+##== user ==##
+#### test ####
+.user:var:test: &user_var_test
+  variables:
+    APP_PATH: "lmt-mbsp-cms-user"
+    APP_NAME: "cms-user"
+    APP_PORT: 8090
+    CONTAIN_NAME: "cms-user"
+    ENV: "SPRING_PROFILES_ACTIVE=test"
+  tags:
+    - clean-test
+    - run-test
+
+user:build:
+  <<: *docker_build
+  <<: *user_var_test
+
+user:push:
+  <<: *docker_push
+  <<: *user_var_test
+
+user:clean:test:
+  <<: *docker_clean
+  <<: *user_var_test
+
+user:run:test:
+  <<: *docker_run
+  <<: *user_var_test
+
+##== user ==##
+#### dev ####
+.user:var:dev: &user_var_dev
+  variables:
+    APP_PATH: "lmt-mbsp-cms-user"
+    APP_NAME: "cms-user"
+    APP_PORT: 58090
+    CONTAIN_NAME: "cms-user-dev"
+    ENV: "SPRING_PROFILES_ACTIVE=dev"
+  dependencies:
+    - user:push
+  tags:
+    - clean-dev
+    - run-dev
+
+user:clean:dev:
+  <<: *docker_clean
+  <<: *user_var_dev
+
+user:run:dev:
+  <<: *docker_run
+  <<: *user_var_dev

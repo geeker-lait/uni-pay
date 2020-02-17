@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.unichain.pay</groupId>
+        <artifactId>unichain-pay</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>pay-channel</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>pay-channel-alipay</module>
+        <!--<module>pay-channel-allinpay</module>
+        <module>pay-channel-baofoo</module>
+        <module>pay-channel-chanpay</module>
+        <module>pay-channel-fuiou</module>
+        <module>pay-channel-huifu</module>
+        <module>pay-channel-lianlian</module>-->
+        <module>pay-channel-mfe88</module>
+        <module>pay-channel-sharelink</module>
+        <!--<module>pay-channel-ucfpay</module>
+        <module>pay-channel-union</module>-->
+        <module>pay-channel-weixin</module>
+       <!-- <module>pay-channel-yeepay</module>-->
+        <!--<module>pay-channel-szsharelink</module>-->
+    </modules>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
+
+</project>

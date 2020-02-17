@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.unichain.pay</groupId>
+        <artifactId>unichain-pay</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>pay-gateway</artifactId>
+
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>com.unichain.service</groupId>
+            <artifactId>service-login-dto</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.unichain.pay</groupId>
+            <artifactId>pay-utils</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.unichain.pay</groupId>
+            <artifactId>pay-common-biz</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.unichain.pay</groupId>
+            <artifactId>pay-channel-lianlian</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.unichain.pay</groupId>
+            <artifactId>pay-channel-mfe88</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.unichain.pay</groupId>
+            <artifactId>pay-channel-sharelink</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.unichain.pay</groupId>
+            <artifactId>pay-channel-yeepay</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--euraka-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.unichain.config</groupId>
+            <artifactId>unichain-config-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>unichain-payment-gateway-application-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+
+            <resource>
+                <directory>${basedir}/../pay-channel/pay-channel-mfe88/src/main/resources/libs/mfe88</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/../pay-channel/pay-channel-sharelink/src/main/resources/libs/sharelink</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+            <!--<resource>-->
+                <!--<directory>src/main/resources</directory>-->
+                <!--<targetPath>BOOT-INF/classes/</targetPath>-->
+            <!--</resource>-->
+        </resources>
+
+        <plugins>
+
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes/</outputDirectory>
+                            <resources>
+                                <!-- 将各模块中的配置文件复制到该宿主工程中 -->
+                                <resource>
+                                    <directory>
+                                        ${basedir}/../pay-channel/pay-channel-mfe88/src/main/resources
+                                    </directory>
+                                    <includes>
+                                        <include>**/*.*</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${basedir}/../pay-channel/pay-channel-sharelink/src/main/resources
+                                    </directory>
+                                    <includes>
+                                        <include>**/*.*</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>
+                                        ${basedir}/../pay-channel/pay-channel-yeepay/src/main/resources
+                                    </directory>
+                                    <includes>
+                                        <include>**/*.*</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

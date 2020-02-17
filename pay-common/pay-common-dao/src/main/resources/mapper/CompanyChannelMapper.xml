@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unichain.pay.dao.MerchantChannelMapper">
+    <resultMap id="BaseResultMap" type="com.unichain.pay.entity.MerchantChannel">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="channel_code" jdbcType="VARCHAR" property="channelCode"/>
+        <result column="company_code" jdbcType="VARCHAR" property="companyCode"/>
+        <result column="merchant_no" jdbcType="VARCHAR" property="merchantNo"/>
+        <result column="secret_key" jdbcType="VARCHAR" property="secretKey"/>
+        <result column="ctime" jdbcType="TIMESTAMP" property="ctime"/>
+        <result column="utime" jdbcType="TIMESTAMP" property="utime"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="updator" jdbcType="VARCHAR" property="updator"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, channel_code, company_code, merchant_no, secret_key, ext, ctime, utime, creator,
+    updator
+  </sql>
+</mapper>

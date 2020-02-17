@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <groupId>com.unichain.pay</groupId>
+    <artifactId>unichain-pay</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <modules>
+        <!--<module>pay-admin</module>-->
+        <module>pay-api</module>
+        <module>pay-channel</module>
+        <module>pay-common</module>
+        <module>pay-core</module>
+        <!--<module>pay-demo</module>-->
+        <module>pay-gateway</module>
+        <module>pay-utils</module>
+        <module>pay-base</module>
+        <!--<module>pay-user</module>-->
+    </modules>
+
+    <properties>
+        <unichain-framework.version>1.0.1-SNAPSHOT</unichain-framework.version>
+        <unichain-service.version>1.0.0-SNAPSHOT</unichain-service.version>
+        <unichain-account.version>1.0.0-SNAPSHOT</unichain-account.version>
+        <unichain-user.version>1.0.0-SNAPSHOT</unichain-user.version>
+        <unichain-prodcut.version>1.0.0-SNAPSHOT</unichain-prodcut.version>
+        <unichain-member.version>1.0.0-SNAPSHOT</unichain-member.version>
+        <unichain-pay.version>1.0.0-SNAPSHOT</unichain-pay.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!--pay-core-->
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-api-client</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-api-dto</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <!--pay-gateway-->
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-gateway</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-core</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <!--pay-common-mvc-->
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-common-dao</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-common-service</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-common-biz</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-common-controller</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-common-entity</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-common-pojo</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <!--pay-channel-->
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-weixin</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-sharelink</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-alipay</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-fuiou</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-union</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-lianlian</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-mfe88</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-channel-yeepay</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <!--pay-admin-->
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-admin-controller</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-admin-biz</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <!--pay -utils-->
+            <dependency>
+                <groupId>com.unichain.pay</groupId>
+                <artifactId>pay-utils</artifactId>
+                <version>${unichain-pay.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.unichain.service</groupId>
+                <artifactId>service-id-generater</artifactId>
+                <version>${unichain-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.unichain.service</groupId>
+                <artifactId>service-login-dto</artifactId>
+                <version>${unichain-service.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.unichain.framework</groupId>
+                <artifactId>unichain-framework-core</artifactId>
+                <version>${unichain-framework.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>3.4.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpmime.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.crazycake</groupId>
+                <artifactId>camel-name-utils</artifactId>
+                <version>1.0.0-RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.3</version>
+                <!--<exclusions>
+                    <exclusion>
+                        <groupId>commons-collections</groupId>
+                        <artifactId>commons-collections</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>-->
+            </dependency>
+            <!--##################汇付##################-->
+            <dependency>
+                <groupId>com.huifu.cfca</groupId>
+                <artifactId>cryptokit.jni</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.huifu.cfca</groupId>
+                <artifactId>sadk</artifactId>
+                <version>3.2.0.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.huifu.cfca</groupId>
+                <artifactId>sansec.swxajce</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.huifu.saturn</groupId>
+                <artifactId>saturn-cfca</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.jodd</groupId>
+                <artifactId>jodd-http</artifactId>
+                <version>5.0.12</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.10</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.54</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-core</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-compiler</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-api</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-internal</artifactId>
+                <version>${drools.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>4.6.8</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>maven-snapshots</name>
+            <url>http://192.168.1.199:8081/repository/maven-snapshots/</url>
+            <layout>default</layout>
+        </snapshotRepository>
+        <repository>
+            <id>maven-releases</id>
+            <name>maven-releases</name>
+            <url>http://192.168.1.199:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+    <!--    <distributionManagement>
+            <snapshotRepository>
+                <id>ossrh</id>
+                <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            </snapshotRepository>
+            <repository>
+                <id>ossrh</id>
+                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+        </distributionManagement>-->
+</project>

@@ -1,0 +1,57 @@
+eureka:
+  instance:
+    #hostname: localhost
+    #lease-renewal-interval-in-seconds: 30 # 设置心跳的时间间隔（默认是30秒）
+    #lease-expiration-duration-in-seconds: 90 # 如果现在超过了5秒的间隔（默认是90秒）
+    #instance-id: ${spring.application.name}:${server.port}  # 在信息列表时显示主机名称
+    prefer-ip-address: true # 访问的路径变为IP地址
+  client: # 客户端进行Eureka注册的配置
+    registerWithEureka: true
+    fetch-registry: false
+    registryFetchIntervalSeconds: 30
+    eureka-server-connect-timeout-seconds: 3600
+    serviceUrl:
+      defaultZone: http://192.168.1.199:8761/eureka
+#ribbon:
+#
+#  # 同一实例最大重试次数，不包括首次调用。默认值为0
+#  MaxAutoRetries: 0
+#  # 同一个微服务其他实例的最大重试次数，不包括第一次调用的实例。默认值为1
+#  MaxAutoRetriesNextServer: 0
+#  # 是否所有操作（GET、POST等）都允许重试。默认值为false
+#  OkToRetryOnAllOperations: false
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+spring:
+  redis:
+    host: 127.0.0.1
+    #    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 300
+    lettuce:
+      pool:
+        max-active: 30
+        max-idle: 10
+        max-wait: 10000
+  datasource:
+    username: root
+    #password: root
+    password: zfc1cfkyaghhvzrlcg
+    #url: jdbc:mysql://localhost:3306/unichain_product_center?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.1.199:3306/pay_bak?useUnicode=true&characterEncoding=UTF-8
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  #   cloud:
+  #      config:
+  #          uri: http://localhost:8087/test   #Config server的uri
+  #       profile: dev                       #指定的环境
+  #       label: init
+

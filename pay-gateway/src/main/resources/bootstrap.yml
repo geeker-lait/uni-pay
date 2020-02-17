@@ -1,0 +1,13 @@
+server:
+  port: 18011
+  servlet:
+    context-path: /payment
+#spring
+spring:
+  application:
+    name: payment-gateway-application
+  profiles:
+    active: ${profile:dev}
+
+
+

@@ -1,0 +1,7 @@
+suixingpay:
+  config:
+    enabled: true
+    uris:
+      - http://config.tastelifer.com:8091
+    username: admin
+    password: 123456

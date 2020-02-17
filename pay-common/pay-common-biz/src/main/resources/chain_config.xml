@@ -1,0 +1,6 @@
+<catalog>
+    <chain name="payChain">
+        <command id="pageDisplayCommand" className="com.unichain.pay.biz.chain.PageDisplayCommand"/>
+        <command id="interactiveCommand" className="com.unichain.pay.biz.chain.InteractiveCommand"/>
+    </chain>
+</catalog>

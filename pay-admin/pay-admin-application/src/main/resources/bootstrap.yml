@@ -1,0 +1,10 @@
+server:
+  port: 18012
+  servlet:
+    context-path: /payment
+#spring
+spring:
+  application:
+    name: payment-admin-application
+  profiles:
+    active: ${profile:dev}

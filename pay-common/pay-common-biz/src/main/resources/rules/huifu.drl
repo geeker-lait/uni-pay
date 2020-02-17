@@ -1,0 +1,23 @@
+
+package com.sample
+
+import com.unichain.pay.biz.test.Refuse;
+import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+
+query "find_Person"(String person_name)
+	$person:Refuse(name == person_name)
+end
+
+
+rule "find"
+	when
+		$person:Refuse(name == "godme")
+	then
+		System.out.println("print: " + $person.getName());
+end
+
+
